@@ -8,6 +8,7 @@ from flask_ckeditor import CKEditor
 from flask_login import LoginManager
 from flask_gravatar import Gravatar
 from blog_package.constants import *
+import os
 
 # Create the Flask app
 app = Flask(__name__)
@@ -26,7 +27,7 @@ gravatar = Gravatar(app,
 # Create the database
 class Base(DeclarativeBase):
     pass
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.enivron.get('DB_URI', 'sqlite:///posts.db')
 db = SQLAlchemy(model_class=Base)
 db.init_app(app)
 
